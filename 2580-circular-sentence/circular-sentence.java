@@ -15,6 +15,7 @@ class Solution {
         if(firstchar!=lastchar){
             return false;
         }
+        
         return true;
     }
 }
