@@ -1,25 +1,25 @@
 class Solution {
     public int mostFrequentEven(int[] nums) {
-        Map<Integer,Integer> freqelement=new HashMap<>();
-        
+
+        HashMap<Integer,Integer> mapFreq=new HashMap<>();
         for(int n:nums){
-            freqelement.put(n,freqelement.getOrDefault(n,0)+1);
-        }
-        
-        int maxfreq=0;
-        int smalleven=-1;
-        for(Map.Entry<Integer,Integer> e:freqelement.entrySet()){
-            int num=e.getKey();
-            int freq=e.getValue();
-            if(num%2==0){
-              if(freq>maxfreq){
-                    maxfreq=freq;
-                    smalleven=num;
-                }else if(freq==maxfreq && num<smalleven){
-                    smalleven=num;
-                }
+            if(n%2==0){
+                mapFreq.put(n,mapFreq.getOrDefault(n,0)+1);
             }
         }
-        return smalleven;
+
+        int maxFrequent=0;
+        int ele=-1;
+        for(Map.Entry<Integer,Integer> e:mapFreq.entrySet()){
+            int key=e.getKey();
+            int freq=e.getValue();
+
+            if(freq>maxFrequent || (freq==maxFrequent && key<ele)){
+                maxFrequent=freq;
+                ele=key;
+            }
+        }
+
+            return ele;
     }
 }
