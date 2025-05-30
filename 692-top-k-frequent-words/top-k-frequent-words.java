@@ -7,16 +7,17 @@ class Solution {
         }
         
         List<String> list=new ArrayList<>(wordmap.keySet());
-       
         list.sort((word1,word2)->{
             int freq1=wordmap.get(word1);
             int freq2=wordmap.get(word2);
             if(freq1==freq2){
                 return word1.compareTo(word2);
             }
-            return freq2-freq1;
+            return freq2-freq1; //descending order sort 
         });
-        
+
         return list.subList(0,k);
     }
-}
+  }
+
+   
