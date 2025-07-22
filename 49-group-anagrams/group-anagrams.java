@@ -2,22 +2,42 @@ import java.util.*;
 
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
+            Map<String,List<String>> anagram=new HashMap<>();
 
-        Map<String,List<String>> resultMap=new HashMap<>();
-        for(String str:strs){
-            int[] countChar=new int[26];
-            for(char c :str.toCharArray()){
-                countChar[c-'a']++;
+            for(String str:strs){
+                char[] character=str.toCharArray();
+                Arrays.sort(character);
+
+                String key=new String(character);
+
+                    if(!anagram.containsKey(key)){
+                        anagram.put(key,new ArrayList<>());
+                    }
+                        anagram.get(key).add(str);
             }
-
-        String key=Arrays.toString(countChar);
-
-     resultMap.computeIfAbsent(key, k-> new ArrayList<>()).add(str);
-
-        }
-        return new ArrayList<>(resultMap.values());
+            return new ArrayList<>(anagram.values());
     }
 }
+
+/*
+Map<String,List<String>> anagrams=new HashMap<>();
+
+            for(String str:strs){
+                char[] characters=str.toCharArray();
+                Arrays.sort(characters);
+
+                String key=new String(characters);
+
+            //computeIfAbsent---
+                if (!anagrams.containsKey(key)) {
+                anagrams.put(key, new ArrayList<>());
+                            }
+                    anagrams.get(key).add(str);
+
+            }
+            return new ArrayList<>(anagrams.values());
+*/ 
+
 
  /*
  BRUTE-FORCE
